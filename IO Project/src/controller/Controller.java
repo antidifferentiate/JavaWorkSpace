@@ -251,6 +251,8 @@ public class Controller
 
 		try
 		{
+			
+			@SuppressWarnings("unused")
 			int valid = Integer.parseInt(toBeParsed);
 			isNumber = true;
 		}

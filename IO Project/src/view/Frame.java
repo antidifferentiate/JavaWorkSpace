@@ -10,12 +10,14 @@ import controller.Controller;
  * @version 1.0 13/12/2013
  *
  */
+@SuppressWarnings("serial")
 public class Frame extends JFrame
 {
 	/**
 	 * Controller is the control object.
 	 * universalPanel for the frame
 	 */
+	@SuppressWarnings("unused")
 	private Controller universalController;
 	private Panel universalPanel;
 

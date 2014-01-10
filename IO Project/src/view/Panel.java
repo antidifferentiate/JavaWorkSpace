@@ -9,6 +9,7 @@ import javax.swing.*;
 import model.Game;
 import controller.Controller;
 
+@SuppressWarnings("serial")
 public class Panel extends JPanel
 {
 	/* ******* Declaration Section ******** */
