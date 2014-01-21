@@ -168,4 +168,5 @@ public class EquationController
 
 		return isNumber;
 	}
+
 }

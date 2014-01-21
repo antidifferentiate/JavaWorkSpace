@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import model.ExponentEquation;
 import controller.EquationController;
 
 @SuppressWarnings("serial")
@@ -31,11 +32,15 @@ public class EquationPanel extends JPanel
 	 */
 	EquationFrame baseFrame;
 
+	ExponentEquation baseEquation;
+
+	private boolean drawLine;
 	private SpringLayout baseLayout;
 	private JButton addButton;
 	private JButton removeButton;
 	private JButton graphButton;
 	private JComboBox<String> dropDownVariables;
+	//private JLabel variableLabel;
 
 	/* ************* Constructors ******************** */
 	/**
@@ -49,6 +54,8 @@ public class EquationPanel extends JPanel
 	{
 		this.baseController = baseController;
 		this.baseFrame = baseFrame;
+
+		drawLine = false;
 
 		createParts();
 		addParts();
@@ -154,6 +161,13 @@ public class EquationPanel extends JPanel
 
 				}
 
+				if (xValues.size() > 0)
+				{
+					baseEquation = new ExponentEquation(xValues, yValues);
+
+					drawLine = true;
+				}
+
 				repaint();
 			}
 		});
@@ -203,9 +217,26 @@ public class EquationPanel extends JPanel
 
 	public void paint(Graphics g)
 	{
+		//set drawing color to black
 		g.setColor(Color.BLACK);
-		g.drawLine(0, 0, 100, 100);
-
+		
+		//if we are drawing, graph the line.
+		if (drawLine == true)
+		{
+			for (int xPosition = 0; xPosition < 100; xPosition++)
+			{
+				g.drawLine((xPosition) * 10,
+						(int)(300-baseEquation.getValue((xPosition - 50)) * 3),
+						(xPosition + 1) * 10,
+						(int)(300-baseEquation.getValue((xPosition - 49)) * 3));
+			}
+			
+			//x axis
+			g.drawLine(0,300,2000,300);
+			//y axis
+			g.drawLine(500,0,500,2000);
+			
+		}
 		super.paint(g);
 
 	}
